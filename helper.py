@@ -36,9 +36,10 @@ def get_repeating_key(text_list, key): #works if kulang or sobra ung key
 def str_validation(prompt):
     while True: 
         try:
-            string_value = input(prompt).strip()   #remove whitespace in start and and
+            string_value = input(prompt)
             if not string_value.isalpha() or not string_value.islower() or string_value == "" or string_value.isspace():
                 raise ValueError("Input must contain lowercase letters only.")
+            return string_value
         except ValueError as error:
             print(error)  
 
@@ -58,7 +59,6 @@ def int_validation(prompt):
         for integers in int_value:
             if not integers.isdigit() or integers > 0:
                 raise ValueError("Input must contain positive integers only.") #not final
-            return int_value
         return int_value #?
     except ValueError as error: print(error)
 
