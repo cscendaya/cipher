@@ -42,6 +42,37 @@ def fix_key (key):
     
 #------OTHER FUNCTIONS---------------------------------------
 
+def print_info():
+    print("""\n=============================================================================
+          \nVersion 1.0.0\n\nOrigin:
+
+    The CONVOY Algorithm was developed by Endaya, Go, and Salandanan, with a focus on securing encryption keys. 
+    Inspired by armored trucks transporting valuable assets, the algorithm prioritizes key security
+    by encrypting it separately. Built on Affine encryption, CONVOY ensures strong yet lightweight encryption,
+    balancing security and efficiency.
+          
+Use Case:         
+          
+    CONVOY Encryption is designed to secure textual data (e.g. credentials) 
+    by enhancing Affine encryption with additional security layers. The algorithm ensures that both 
+    the ciphertext and the encryption key are obfuscated, making decryption significantly harder for
+    attackers who must first retrieve the transport key.
+
+Pros:
+          
+    - Randomized offsets make keys unpredictable, ensuring varied ciphertexts.
+    - Fast and efficient due to simple mathematical operations.
+    - Encrypts both plaintext and key using Affine transformations for added complexity.
+    - Randomization disrupts frequency-based attacks.
+          
+Cons:
+
+    - Exposure of multiplier, offsets, or list allows systematic key testing.
+    - Limited to text encryption, not ideal for large-scale ata.
+    - Mod 26 restricts encryption to alphabetic characters, reducing variability.
+            
+=============================================================================\n""")
+
 """ A function that takes the list of input characters and converts them into corresponding numerical values (0-25). Uses ord() to return ASCII value of each letter"""
 
 """ Subtracting each letter's ASCII to 'a' which has an ASCII value of 97, this process serves as 0 based index for acquiring values 0 - 25 """
@@ -89,7 +120,7 @@ def encrypt_opt():
     
     try:
         
-        user_input = input("\nEnter plaintext to encrypt: ").lower().replace(" ", "")
+        user_input = input("\nEnter plaintext to encrypt: ").lower()
     
         if not user_input.isalpha():
             raise ValueError("\nInput must contain letters only.\n")
@@ -184,6 +215,7 @@ def decrypt_opt():
         
         """ Convertion of decrypted numeric values to its corresponding char values. Decyphering the plaintext. """
         decrypted_text = convert_to_char(decrypted_values)
+
         print(f"""
 =============================================================================
                             DECRYPTION SUCCESSFUL 
@@ -200,9 +232,8 @@ SECURITY NOTE:
 - Ensure the decrypted message is handled securely.
 - CONVOY Encryption provides security, but responsibility lies with the user.
 
-=============================================================================
-
-""")
+=============================================================================\n""")
+        
         """ Clean Memory Area for Decryption """
         remove_trails(decrypted_text)
   
@@ -217,41 +248,31 @@ def get_menu_choice():
             choice_input = input("MENU\n\n"
                                  "1 - Encrypt\n"
                                  "2 - Decrypt\n"
-                                 "3 - Return to Main Menu\n"
-                                 "\nEnter your choice (1 - 3): ").replace(" ", "")
+                                 "3 - About\n"
+                                 "4 - Return to Main Menu\n"
+                                 "\nEnter your choice (1 - 4): ").replace(" ", "")
 
             if not choice_input.isdigit():
-                print("\nInvalid input. Please select 1, 2, or 3.\n")
+                print("\nInvalid input. Please select 1, 2, 3, or 4.\n")
                 continue
 
             choice = int(choice_input)
 
-            if choice in (1, 2, 3):
+            if choice in (1, 2, 3, 4):
                 return choice
             else:
-                print("\nInvalid choice. Please select a valid option (1 - 3).\n")
+                print("\nInvalid choice. Please select a valid option (1 - 4).\n")
 
         except ValueError:
-            print("\nInvalid input. Please select 1, 2, or 3.\n")
+            print("\nInvalid input. Please select 1, 2, 3, or 4.\n")
 
             
 def run_convoy():
-
-    helper.get_menu_choice()
     
     banner = pyfiglet.figlet_format("CONVOY Encryption", font="cybermedium")
     print(f"""\n=============================================================================
 
-{banner}""")
-    
-    print("""Version 1.0.0\n\nOrigin:
-
-    The CONVOY Algorithm was developed by Endaya, Go, and Salandanan, with a focus on securing encryption keys. 
-    Inspired by armored trucks transporting valuable assets, the algorithm prioritizes key security
-    by encrypting it separately. Built on Affine encryption, CONVOY ensures strong yet lightweight encryption,
-    balancing security and efficiency.
-          
-Select an option below to proceed:\n""")
+{banner}\nSelect an option below to proceed:\n""")
     
     while True:
          choice = get_menu_choice()
@@ -261,8 +282,11 @@ Select an option below to proceed:\n""")
          elif choice == 2:
              decrypt_opt()
          elif choice == 3:
-             print("Returning to the Main Menu...")
-             break 
+            print_info()
+         elif choice == 4:
+            print("""\nReturning to the Main Menu...\n
+=============================================================================\n""")
+            break 
 
-if _name_ == "_main_":
+if __name__ == "_main_":
     run_convoy()

@@ -5,12 +5,12 @@ def get_menu_choice():
     while True:
         
         try:
-            choice = int(input("MENU\n\n1 - Encrypt\n2 - Decrypt\n3 - Return\n\nEnter choice: "))
+            choice = int(input("MENU\n\n1 - Encrypt\n2 - Decrypt\n3 - About\n4 - Return\n\nEnter choice: "))
             
-            if choice in (1,2,3):
+            if choice in (1,2,3,4):
                 return choice
             else:
-                print("\nInvalid choice, Please select from 1, 2, or 3.\n")
+                print("\nInvalid choice, Please select from 1, 2, 3, or 4.\n")
             
         except ValueError:
             print("\nInvalid input, Please enter a number.\n")
@@ -36,9 +36,10 @@ def get_repeating_key(text_list, key): #works if kulang or sobra ung key
 def str_validation(prompt):
     while True: 
         try:
-            string_value = input(prompt).strip()   #remove whitespace in start and and
+            string_value = input(prompt)
             if not string_value.isalpha() or not string_value.islower() or string_value == "" or string_value.isspace():
                 raise ValueError("Input must contain lowercase letters only.")
+            return string_value
         except ValueError as error:
             print(error)  
 
@@ -58,7 +59,6 @@ def int_validation(prompt):
         for integers in int_value:
             if not integers.isdigit() or integers > 0:
                 raise ValueError("Input must contain positive integers only.") #not final
-            return int_value
         return int_value #?
     except ValueError as error: print(error)
 
@@ -79,3 +79,12 @@ def ignore_whitespace(value):
         if char.isspace():  # Skip all whitespaces ; not final
             continue
 
+def int_validation(prompt): 
+    while True:
+        try:
+            int_value = input(prompt)  # Get input as string
+            if not int_value.isdigit():
+                raise ValueError("Input must be a positive integer.")
+            return int(int_value)  # Convert to integer after validation
+        except ValueError as error:
+            print(error)
