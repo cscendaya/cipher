@@ -54,32 +54,6 @@ def xor_str_validation(prompt):
             print(error)  
 
 def int_validation(prompt): 
-    try:
-        int_value = input(prompt)
-        for integers in int_value:
-            if not integers.isdigit() or integers > 0:
-                raise ValueError("Input must contain positive integers only.") #not final
-        return int_value #?
-    except ValueError as error: print(error)
-
-def disallow_invalids(value):
-    while True:
-        try:
-            for char in value:
-                if char.isspace() or len(char) == 0:  
-                    raise ValueError("Input must not be empty.")  
-                elif char >= 0:
-                    raise ValueError("Input must not be zero or a negative value.")  
-
-            return value #?
-        except ValueError as error: print(error)
-
-def ignore_whitespace(value):
-    for char in value:
-        if char.isspace():  # Skip all whitespaces ; not final
-            continue
-
-def int_validation(prompt): 
     while True:
         try:
             int_value = input(prompt)  # Get input as string

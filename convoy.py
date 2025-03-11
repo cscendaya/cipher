@@ -1,6 +1,4 @@
 import helper 
-
-
 import secrets
 from tkinter import font
 import pyfiglet 
@@ -73,13 +71,6 @@ Cons:
             
 =============================================================================\n""")
 
-""" A function that takes the list of input characters and converts them into corresponding numerical values (0-25). Uses ord() to return ASCII value of each letter"""
-
-""" Subtracting each letter's ASCII to 'a' which has an ASCII value of 97, this process serves as 0 based index for acquiring values 0 - 25 """
-
-def char_to_num(char_list):
-    return [ord(letter) - ord('a') for letter in char_list] 
-
 """ A function that takes the list of numerical values and perform the indicated operations. Returning the index integer value for locating master key. """
  
 def generate_key_index(numeric_values, initial_key):    
@@ -95,13 +86,6 @@ def locate_offset_value(key_index):
     randomizer.shuffle(offset_values)
     shift_value = key_index % len(offset_values)
     return offset_values[shift_value]
-    
-""" A function that gets each numeric value in the list and add it with the ASCII value of 'a' which is 97, this reverses the char_to_num function. """
-
-""" After converting numeric values to char, it merges all characters into a single string by utilizing ''.join() """
-
-def convert_to_char(list):
-    return ''.join(chr(value + ord('a')) for value in list)
 
 #------WIPE MEMORY-------------------------------------------
 
@@ -136,7 +120,7 @@ def encrypt_opt():
         
         """ Utilizes the char_to_num function that returns a list populated with converted numeric values of the user input. """
         
-        numeric_values = char_to_num(list(user_input)) 
+        numeric_values = helper.char_to_num_lower(list(user_input)) 
         
         """ Utilizes the locate_offset_value function that returns the picked offset value based on the index of key_index. """
         
@@ -150,7 +134,7 @@ def encrypt_opt():
         encrypted_values = [encrypt(ENCRYPTION_MULTIPLIER, num, master_key) for num in numeric_values] 
         
         """ This section covers the convertion of encrypted numeric values to its corresponding char value. """
-        encrypted_text = convert_to_char(encrypted_values)
+        encrypted_text = helper.convert_to_char_lower(encrypted_values)
         
         """ This part encrypts the master key, converting it to transport key. """
         transport_key = encrypt(TRANSPORT_MULTIPLIER, master_key ,TRANSPORT_OFFSET)
@@ -208,13 +192,13 @@ def decrypt_opt():
         master_key = fix_key(decrypt(TRANSPORT_INVERSE, transport_key, TRANSPORT_OFFSET))
         
         """ Convertion of each char in user input into its corresponding numeric value. """
-        numeric_values = char_to_num(list(user_input))
+        numeric_values = helper.char_to_num_lower(list(user_input))
         
         """ Decryption process, uses the master key as an argument in completing the decryption process. """
         decrypted_values = [decrypt(DECRYPTION_INVERSE, num, master_key) for num in numeric_values]
         
         """ Convertion of decrypted numeric values to its corresponding char values. Decyphering the plaintext. """
-        decrypted_text = convert_to_char(decrypted_values)
+        decrypted_text = helper.convert_to_char_lower(decrypted_values)
 
         print(f"""
 =============================================================================

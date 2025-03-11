@@ -72,15 +72,13 @@ Use Case:
 
 Pros:
           
-    - Sample Text 1
-    - Sample Text 2
-    - Sample Text 3
+    - More secure than the Caesar cipher due to its polyalphabetic nature.
+    - Harder to crack using frequency analysis compared to simple substitution ciphers.
           
 Cons:
 
-    - Sample Text 1
-    - Sample Text 2
-    - Sample Text 3
+    - Vulnerable to repeated key attacks if the key is short.
+    - Requires key management for encryption and decryption.
             
 =============================================================================\n""")
 

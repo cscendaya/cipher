@@ -46,8 +46,8 @@ def xor_decrypt():
             xduser_input = helper.xor_str_validation("\nXOR Ciphertext: ")                                         
             xhex_input = bytes.fromhex(xduser_input)                       #bytes.fromhex() = return from hex to original byte perfectly 
             break                                                          #exit loop if successful                   
-        except ValueError as error:
-            print("Invalid hexadecimal input. Please enter valid hex values.", error)
+        except ValueError:
+            print("Please enter valid hex values.")                        #hex must be in even pairs
 
     while True:
         try:
@@ -70,8 +70,9 @@ SECURITY NOTE:
 - XOR Encryption provides security, but responsibility lies with the user.
 - Non UTF-8 characters will be printed as "?"
 
-=============================================================================\n""") #.decode(errors="replace") = non-utf 8 characters may be printed, hence replacing it with ? , assuming that the ciphertext is not from a text string only
-        
+=============================================================================\n""") 
+            #.decode(errors="replace") = validation for non utf-8 characters
+            break
         except ValueError as error: print(error) 
     
 def print_info():
@@ -117,11 +118,9 @@ def run_xor():
         choice = helper.get_menu_choice()
         
         if choice == 1:
-            xor_encrypt()  
-            helper.get_menu_choice() 
+            xor_encrypt()    
         elif choice == 2:
-            xor_decrypt() 
-            helper.get_menu_choice()      
+            xor_decrypt()       
         elif choice == 3: 
             print_info()
         elif choice == 4:

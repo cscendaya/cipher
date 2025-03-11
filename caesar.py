@@ -69,15 +69,13 @@ Use Case:
 
 Pros:
           
-    - Sample Text 1
-    - Sample Text 2
-    - Sample Text 3
+    - Simple and easy to implement.
+    - Fast encryption and decryption process.
           
 Cons:
 
-    - Sample Text 1
-    - Sample Text 2
-    - Sample Text 3
+    - Extremely weak security, easily broken with brute force or frequency analysis.
+    - Only has 25 possible keys, making it impractical for real-world encryption.
             
 =============================================================================\n""")
     
