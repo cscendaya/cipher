@@ -33,24 +33,34 @@ def get_repeating_key(text_list, key): #works if kulang or sobra ung key
 
 #-------INPUT VALIDATIONS------- #lagyan pa ba limit ung user inputs? if so, how many? 
 
-def str_validation(string_value):
+def str_validation(prompt):
     while True: 
         try:
-            if not string_value.isalpha() or not string_value.lower():
-                raise ValueError("Input must contain lowercase letters only.") #not final, not sure sa lower since nillow na agad
-            else:
-                return string_value.split() #?
-        except ValueError as error: print(error)
+            string_value = input(prompt).strip()   #remove whitespace in start and and
+            if not string_value.isalpha() or not string_value.islower() or string_value == "" or string_value.isspace():
+                raise ValueError("Input must contain lowercase letters only.")
+        except ValueError as error:
+            print(error)  
 
-def int_validation(int_value):
+def xor_str_validation(prompt):
     while True: 
         try:
-            for integers in int_value:
-                if not integers.isdigit() or integers > 0:
-                    raise ValueError("Input must contain positive integers only.") #not final
-                
-            return int_value #?
-        except ValueError as error: print(error)
+            string_value = input(prompt)
+            if string_value == "" or string_value.isspace():
+                raise ValueError("Invalid input.")
+            return string_value
+        except ValueError as error:
+            print(error)  
+
+def int_validation(prompt): 
+    try:
+        int_value = input(prompt)
+        for integers in int_value:
+            if not integers.isdigit() or integers > 0:
+                raise ValueError("Input must contain positive integers only.") #not final
+            return int_value
+        return int_value #?
+    except ValueError as error: print(error)
 
 def disallow_invalids(value):
     while True:
