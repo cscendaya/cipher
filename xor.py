@@ -124,7 +124,8 @@ def run_xor():
         elif choice == 3: 
             print_info()
         elif choice == 4:
-            print("Returning to the Main Menu...")
+            print("""\nReturning to the Main Menu...\n
+=============================================================================\n""")
             break
 
 if __name__ == "_main_":

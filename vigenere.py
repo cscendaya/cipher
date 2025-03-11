@@ -64,11 +64,15 @@ def print_info():
     print("""\n=============================================================================
           \nVersion 1.0.0\n\nOrigin:
 
-    Sample Origin for VIGENERE Encryption
+    The Vigenère Cipher was introduced in the 16th century by Giovan Battista 
+    Bellaso and later attributed to Blaise de Vigenère, a French diplomat. 
+    It improves upon the Caesar Cipher by using a keyword to apply multiple 
+    shifting patterns, making it resistant to simple frequency analysis.
           
 Use Case:         
           
-    Sample Text
+    A private messaging app encrypts conversations using the Vigenère Cipher 
+    with a unique user-defined keyword, preventing basic decryption attempts.
 
 Pros:
           

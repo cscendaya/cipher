@@ -51,10 +51,9 @@ def print_info():
           
 Use Case:         
           
-    CONVOY Encryption is designed to secure textual data (e.g. credentials) 
-    by enhancing Affine encryption with additional security layers. The algorithm ensures that both 
-    the ciphertext and the encryption key are obfuscated, making decryption significantly harder for
-    attackers who must first retrieve the transport key.
+    CONVOY encrypts stored credentials, API keys, and configuration files, preventing unauthorized access 
+    without the transport key. Its efficiency makes it ideal for securing text-based data in embedded systems 
+    where advanced encryption is impractical.
 
 Pros:
           
@@ -65,7 +64,7 @@ Pros:
           
 Cons:
 
-    - Exposure of multiplier, offsets, or list allows systematic key testing.
+    - Exposure of fixed multipliers, offsets, or list allows systematic key testing.
     - Limited to text encryption, not ideal for large-scale ata.
     - Mod 26 restricts encryption to alphabetic characters, reducing variability.
             
@@ -233,7 +232,7 @@ def get_menu_choice():
                                  "1 - Encrypt\n"
                                  "2 - Decrypt\n"
                                  "3 - About\n"
-                                 "4 - Return to Main Menu\n"
+                                 "4 - Return\n"
                                  "\nEnter your choice (1 - 4): ").replace(" ", "")
 
             if not choice_input.isdigit():

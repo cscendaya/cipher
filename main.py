@@ -7,8 +7,20 @@ def print_info():
     print("""\n=============================================================================
           \nVersion 1.0.0\n\nAbout:
 
-    Developed by Endaya, Go, and Salandanan for their IT129 Project.
-          
+    This software is a console-based cryptographic program designed for secure and efficient encryption and decryption.
+    It features multiple encryption methods, including Caesar, Vigenère, XOR, and CONVOY, a custom-developed algorithm.
+    With a command-line interface, decent error handling, and detailed insights into each cryptographic process,
+    our program ensures reliability, security, and ease of use, Our software offers a practical approach to understanding 
+    and applying encryption techniques.
+
+Developed By:
+
+(IT129 - CIS342)
+
+- Endaya, Carlie Shaye C.
+- Go, Charles Kristoffer A.
+- Salandanan, Christian Kerby T.
+
 =============================================================================\n""")
 
 def get_main_menu_choice():
@@ -40,8 +52,8 @@ def get_main_menu_choice():
 
 def main():
 
-    banner = pyfiglet.figlet_format("IT129 Encryption Algorithms", font="standard")
-    print(f"""{banner}\nSelect an option below to proceed:\n""")
+    banner = pyfiglet.figlet_format("IT129 Cryptographic Algorithms", font="standard")
+    print(f"""{banner}\nSelect an Algorithm below to proceed:\n""")
     
     while True:
         choice = get_main_menu_choice()

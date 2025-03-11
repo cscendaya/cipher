@@ -61,11 +61,18 @@ def print_info():
     print("""\n=============================================================================
           \nVersion 1.0.0\n\nOrigin:
 
-    Sample Origin for CAESAR Encryption
+    The Caesar Cipher is one of the earliest known encryption techniques, 
+    attributed to Julius Caesar, who used it in ancient Rome to protect 
+    military messages. It operates by shifting each letter in the alphabet 
+    by a fixed number of positions. While effective in ancient times, its 
+    small keyspace of 25 possible shifts makes it highly vulnerable to modern 
+    cryptanalysis.
           
 Use Case:         
           
-    Sample Text
+    A simple text-based game encrypts secret passcodes using a Caesar Cipher 
+    with a predefined shift value. Players must decrypt the passcode to access 
+    hidden levels.
 
 Pros:
           
