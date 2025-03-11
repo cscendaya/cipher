@@ -1,3 +1,6 @@
+import secrets
+from tkinter import font
+import pyfiglet 
 import helper 
 
 def xor_cipher(txt_list, key_list): 
@@ -5,50 +8,92 @@ def xor_cipher(txt_list, key_list):
     xor = []
     for i in range(len(txt_list)):
         xor.append(txt_list[i] ^ xkey[i])
-    return bytes(xor)                                                                 #list of integers turned to bytes
+    return bytes(xor) #list of integers turned to bytes
 
-def xor_encrypt(): 
-    try: 
-        xuser_input = helper.xor_str_validation("XOR Plaintext: ")#.strip() #if valid, strip for end and start whitespace -- ilagay nlng to sa vigenere and caesar, whitespace is ok here masisira kasi message
-    except ValueError as error: print(error)
+def xor_encrypt(): #not final
 
     try: 
-        xkey_input = helper.xor_str_validation("XOR key: ")   
-        xencrypted_text = xor_cipher(list(xuser_input.encode()), xkey_input.encode()) #return list of bytes (insert list() for consistency with xkeyinput repeating key??)
-        print("Ciphertext(hex):", xencrypted_text.hex())                              #.hex() = normalize into a copy-able string
+        xuser_input = input("\nXOR Plaintext: ") #insert helper function? na may try except shizzles
+        xkey_input = input("XOR key: ")   #insert helper function?
+        xencrypted_text = xor_cipher(list(xuser_input.encode()), xkey_input.encode()) #list of bytes
+        print(f"""
+=============================================================================
+                           ENCRYPTION SUCCESSFUL 
+=============================================================================
+              
+RESULTS:                            
+              
+Ciphertext(hex):     {xencrypted_text.hex()}
+
+=============================================================================
+
+IMPORTANT NOTICE:
+
+- Sample 1
+- Sample 2
+- Sample 3
+
+=============================================================================
+""") #.hex() = normalize into a copy-able string
+        
     except ValueError as error: print(error)
-    return
 
+def xor_decrypt(): #kinda final
+    while True: 
+        try: 
+            xuser_input = input("\nXOR Ciphertext(hex): ")
+            if xuser_input == 'q': break            #if user wants to quit during input loop
+            xhex_input = bytes.fromhex(xuser_input) #bytes.fromhex() = from hex to byte 
+            break    
 
-def xor_decrypt(): 
+        except ValueError:
+            print("Invalid hexadecimal input. Please enter valid hex values.") 
+
+    xkey_input = input("XOR Key: ").encode()  #insert helper function?
+    xdecrypted_text = xor_cipher(xhex_input, xkey_input) 
+    print(f"""
+=============================================================================
+                            DECRYPTION SUCCESSFUL 
+=============================================================================
+              
+RESULTS:              
+              
+Decrypted Text:     {xdecrypted_text.decode()}
+
+=============================================================================
+
+SECURITY NOTE:
+
+- Ensure the decrypted message is handled securely.
+- XOR Encryption provides security, but responsibility lies with the user.
+
+=============================================================================
+
+""")
+
+def run():
+
+    banner = pyfiglet.figlet_format("XOR Encryption", font="cybermedium")
+    print(f"""\n=============================================================================
+
+{banner}""")
     
-    try: 
-        xduser_input = helper.xor_str_validation("XOR Ciphertext: ")                                         
-        xhex_input = bytes.fromhex(xduser_input)                                       #bytes.fromhex() = from hex to byte                     
-    except ValueError:
-        print("Invalid hexadecimal input. Please enter valid hex values.")
+    print("""Version 1.0.0\n\nOrigin:
 
-    try:
-        xkey_input = helper.xor_str_validation("XOR Key: ").encode()  
-        xdecrypted_text = xor_cipher(xhex_input, xkey_input) 
-        print("Decrypted text:", xdecrypted_text.decode()) 
-    except ValueError as error: print(error) 
-    return
-
-def run_xor():
+    Sample Text of Origin...
+          
+Select an option below to proceed:\n""")
 
     while True:
-        print("""Version 1.0.0\n\nOrigin:
-
-        The XOR ALGORITHM\n""")
+        
         choice = helper.get_menu_choice()
         
         if choice == 1:
             xor_encrypt()  
+            helper.get_menu_choice() 
         elif choice == 2:
             xor_decrypt() 
+            helper.get_menu_choice()      
         elif choice == 3: 
             print("Returning to the Main Menu...")
-            break  
-                                    
-
+            break
