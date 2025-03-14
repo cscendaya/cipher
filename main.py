@@ -34,7 +34,7 @@ def get_main_menu_choice():
                            "4 - Convoy\n"
                            "5 - About\n"
                            "6 - Exit\n"
-                           "\nEnter choice ( 1 - 6 ): ")
+                           "\nEnter choice ( 1 - 6 ): ").replace(" ", "")
 
             if not choice.isdigit():
                 print("\nInvalid input. Please select 1, 2, 3, 4, 5, or 6.\n")

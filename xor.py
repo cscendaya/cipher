@@ -12,12 +12,12 @@ def xor_cipher(txt_list, key_list):
 
 def xor_encrypt(): 
     try: 
-        xuser_input = helper.xor_str_validation("\nXOR Plaintext: ")#.strip() #if valid, strip for end and start whitespace -- ilagay nlng to sa vigenere and caesar, whitespace is ok here masisira kasi message
+        xuser_input = helper.xor_str_validation("\nXOR Plaintext: ")
     except ValueError as error: print(error)
 
     try: 
         xkey_input = helper.xor_str_validation("XOR key: ")   
-        xencrypted_text = xor_cipher(list(xuser_input.encode()), xkey_input.encode()) #return list of bytes (insert list() for consistency with xkeyinput repeating key??)
+        xencrypted_text = xor_cipher(list(xuser_input.encode()), xkey_input.encode()) #encode list of bytes 
         print(f"""
 =============================================================================
                            ENCRYPTION SUCCESSFUL 
@@ -31,7 +31,7 @@ Ciphertext(hex):     {xencrypted_text.hex()}
 
 IMPORTANT NOTICE:
 
-- Encrypted XOR output is raw binary data (random bytes).
+- Encrypted XOR output is raw binary data (random bytes), operating on UTF-8 characters.
 - Copy-paste the encrypted plaintext (as hex values) for accurate decryption later.
 - Ensure the key is handled securely.
 
@@ -80,15 +80,16 @@ def print_info():
           \nVersion 1.0.0\n\nOrigin:
 
     The XOR encryption algorithm is based on the exclusive OR (XOR) logical operation, 
-    a fundamental concept in Boolean algebra by George Boole. Its cryptographic application 
-    traces back to Gilbert Vernam, who introduced the Vernam cipher (one-time pad) in 1917 
-    while at AT&T. Vernam’s method used XOR to combine plaintext with a random key, achieving 
-    perfect secrecy. Due to its simplicity, efficiency, and reversibility, XOR encryption 
-    remains essential in stream ciphers, data obfuscation, and lightweight encryption schemes.
+    a fundamental concept in Boolean algebra by George Boole. It is a simple cipher that 
+    applies the exclusive OR (XOR) operation between plaintext and a key, making encryption and 
+    decryption identical processes. Gilbert Vernam later built upon this concept in 1917, 
+    introducing the Vernam cipher (One-Time Pad), which achieves perfect secrecy by using a truly 
+    random, single-use key. Due to its simplicity, efficiency, and reversibility, XOR encryption 
+    remains widely used in stream ciphers, data obfuscation, and lightweight encryption schemes.    
           
 Use Case:         
           
-    A secure file storage system encrypts sensitive text files using XOR encryption with 
+    A secure file storage system encrypts sensitive text-only files using XOR encryption with 
     a unique key. When accessed, the same key is used to decrypt the file instantly,
     ensuring fast and lightweight security.
 
@@ -102,7 +103,7 @@ Cons:
 
     - Reusing keys makes it vulnerable to known-plaintext attacks.
     - Secure key storage is crucial for maintaining encryption security.
-    - Needs additional techniques (e.g., random key generation) for robustness.
+    - Needs additional techniques (e.g., random key generation) for robustness, created as One-Time pad (or Vernam)
             
 =============================================================================\n""")
 

@@ -80,7 +80,7 @@ def generate_key_index(numeric_values, initial_key):
 """ Utilizes secrets.SystemRandom().shuffle to securely randomize values that are not based on any patterns. """
 
 def locate_offset_value(key_index):
-    offset_values = list(range(0,2049))
+    offset_values = list(range(0,10001))
     randomizer = secrets.SystemRandom() 
     randomizer.shuffle(offset_values)
     shift_value = key_index % len(offset_values)
@@ -103,7 +103,7 @@ def encrypt_opt():
     
     try:
         
-        user_input = input("\nEnter plaintext to encrypt: ").lower()
+        user_input = input("\nEnter plaintext to encrypt: ").lower().replace(" ", "")
     
         if not user_input.isalpha():
             raise ValueError("\nInput must contain letters only.\n")
